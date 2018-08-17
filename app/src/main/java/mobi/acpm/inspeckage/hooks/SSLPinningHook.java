@@ -232,6 +232,12 @@ class EmptyTrustManager implements X509TrustManager {
             throws CertificateException {
     }
 
+    // This method is not present in X509TrustManager interface, but it is required
+    // by X509TrustManagerExtensions, which will fail to initialize if method is missing
+    public ArrayList<X509Certificate> checkServerTrusted(X509Certificate[] chain, String authType, String host) throws CertificateException {
+        return new ArrayList<X509Certificate>();
+    }
+    
     @Override
     public X509Certificate[] getAcceptedIssuers() {
         return new X509Certificate[0];
